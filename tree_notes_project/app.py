@@ -53,21 +53,21 @@ class TheFloor(QWidget):
         self.Floor_label = QLabel("The Floor")
         self.Floor_label.setFont(QFont("Montserrat", 20, 1))
 
-        # Nav widget
-        self.tree_widget = QTreeWidget()
-        self.tree_widget.setColumnCount(2)
-        self.tree_widget.setHeaderLabels(["Name", "note"])
+        # Nav widget, i actually don't know why this works properly the label part is wrong but whatever im happy
+        self.treenav_widget = QTreeWidget()
+        self.treenav_widget.setColumnCount(len(data))
+        self.treenav_widget.setHeaderLabels(["The Floor"])
         items = []
-        for key, values in data.items():
-         item = QTreeWidgetItem([key])
-        for value in values:
-            ext = value.split(".")[-1].upper()
-            child = QTreeWidgetItem([value, ext])
-        item.addChild(child)
-        items.append(item)
+        for key, labels in data.items():
+            item = QTreeWidgetItem([key])
+            for label in labels:
+                text = data[key][label]
+                child = QTreeWidgetItem([label, str(text)])
+                item.addChild(child)
+            items.append(item)
 
-        self.tree_widget.insertTopLevelItems(0, items)
-        self.Floor_layout.addWidget(self.tree_widget)
+        self.treenav_widget.insertTopLevelItems(0, items)
+        self.Floor_layout.addWidget(self.treenav_widget)
         
 
         # adding Floor to the stacked layout
