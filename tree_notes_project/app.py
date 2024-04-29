@@ -1,5 +1,5 @@
 import sys
-
+from controller import data
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import (
@@ -44,8 +44,6 @@ class TheFloor(QWidget):
         self.treenav_layout = QHBoxLayout()
         self.menu_layout = QHBoxLayout()
 
-        # Nav widget
-        self.tree_widget = QTreeWidget()
 
         # the home screen / floor where all the information trees are connected too
 
@@ -54,6 +52,22 @@ class TheFloor(QWidget):
 
         self.Floor_label = QLabel("The Floor")
         self.Floor_label.setFont(QFont("Montserrat", 20, 1))
+
+        # Nav widget
+        self.tree_widget = QTreeWidget()
+        self.tree_widget.setColumnCount(2)
+        self.tree_widget.setHeaderLabels(["Name", "note"])
+        items = []
+        for key, values in data.items():
+         item = QTreeWidgetItem([key])
+        for value in values:
+            ext = value.split(".")[-1].upper()
+            child = QTreeWidgetItem([value, ext])
+        item.addChild(child)
+        items.append(item)
+
+        self.tree_widget.insertTopLevelItems(0, items)
+        self.Floor_layout.addWidget(self.tree_widget)
         
 
         # adding Floor to the stacked layout
