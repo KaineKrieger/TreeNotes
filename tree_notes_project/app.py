@@ -13,6 +13,7 @@ from PyQt6.QtWidgets import (
     QHBoxLayout,
     QTreeWidget, 
     QTreeWidgetItem,
+    QTextEdit
 
 )
 
@@ -43,7 +44,7 @@ class TheFloor(QWidget):
         self.notes_layout = QStackedLayout()
         self.treenav_layout = QHBoxLayout()
         self.menu_layout = QHBoxLayout()
-
+        
 
         # the home screen / floor where all the information trees are connected too
 
@@ -70,6 +71,9 @@ class TheFloor(QWidget):
         self.Floor_layout.addWidget(self.treenav_widget)
         
 
+
+
+
         # adding Floor to the stacked layout
         self.Floor_layout.addWidget(self.Floor_label)
         self.Floor.setLayout(self.Floor_layout)
@@ -77,7 +81,7 @@ class TheFloor(QWidget):
 
         self.Trunk = TrunkTemplate()
         self.Branch = BranchTemplate()
-        self.Leaf = LeafTemplate()
+
 
         layout = QVBoxLayout()
         
@@ -97,21 +101,9 @@ class TheFloor(QWidget):
         )
         self.Floor_layout.addWidget(buttonBranch)
 
-        buttonLeaf = QPushButton("Push to see a Leaf")
-        buttonLeaf.clicked.connect(
-            lambda checked: self.toggle_window(self.Leaf)
-        )
-        self.Floor_layout.addWidget(buttonLeaf)
-
 
         self.setLayout(self.Floor_layout)
 
-    def toggle_window(self, window):
-        if window.isVisible():
-            window.hide()
-
-        else:
-            window.show()
 
 
 
@@ -124,7 +116,7 @@ class TrunkTemplate(QWidget):
 
     def __init__(self):
         super().__init__()
-        layout = QVBoxLayout()
+        self.trunk_layout = QVBoxLayout()
         self.label = QLabel("This Is a trunk, here you will eventually find links to different branches")
         layout.addWidget(self.label)
         self.setLayout(layout)
@@ -139,19 +131,6 @@ class BranchTemplate(QWidget):
         super().__init__()
         layout = QVBoxLayout()
         self.label = QLabel("This Is a Branch, here you will eventually find links to different Leaves")
-        layout.addWidget(self.label)
-        self.setLayout(layout)
-
-
-class LeafTemplate(QWidget):
-    """
-    This "window" is a QWidget. for now, it is the basic template for a leaf
-    """
-
-    def __init__(self):
-        super().__init__()
-        layout = QVBoxLayout()
-        self.label = QLabel("This Is a Leaf, here you will eventually find the ending points of a string or line of thought")
         layout.addWidget(self.label)
         self.setLayout(layout)
 
