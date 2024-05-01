@@ -13,8 +13,8 @@ from PyQt6.QtWidgets import (
     QHBoxLayout,
     QTreeWidget, 
     QTreeWidgetItem,
-    QTextEdit
-
+    QTextEdit,
+    
 )
 
 
@@ -69,8 +69,8 @@ class TheFloor(QWidget):
 
         self.treenav_widget.insertTopLevelItems(0, items)
         self.Floor_layout.addWidget(self.treenav_widget)
-        
-
+        self.base_trunk = TrunkTemplate        
+        self.treenav_layout.addWidget(self.base_trunk)
 
 
 
@@ -89,17 +89,17 @@ class TheFloor(QWidget):
 #        layout.addWidget(Title_label)
 
 
-        buttonTrunk = QPushButton("Push to see a Trunk")
-        buttonTrunk.clicked.connect(
-            lambda checked: self.toggle_window(self.Trunk)
-        )
-        self.Floor_layout.addWidget(buttonTrunk)
+#        buttonTrunk = QPushButton("Push to see a Trunk")
+#        buttonTrunk.clicked.connect(
+#            lambda checked: self.toggle_window(self.Trunk)
+#        )
+#        self.Floor_layout.addWidget(buttonTrunk)
 
-        buttonBranch = QPushButton("Push to see a Branch")
-        buttonBranch.clicked.connect(
-            lambda checked: self.toggle_window(self.Branch)
-        )
-        self.Floor_layout.addWidget(buttonBranch)
+        # buttonBranch = QPushButton("Push to see a Branch")
+        # buttonBranch.clicked.connect(
+        #     lambda checked: self.toggle_window(self.Branch)
+        # )
+        # self.Floor_layout.addWidget(buttonBranch)
 
 
         self.setLayout(self.Floor_layout)
@@ -118,8 +118,9 @@ class TrunkTemplate(QWidget):
         super().__init__()
         self.trunk_layout = QVBoxLayout()
         self.label = QLabel("This Is a trunk, here you will eventually find links to different branches")
-        layout.addWidget(self.label)
-        self.setLayout(layout)
+        self.label.setAlignment(Qt.AlignmentFlag.AlignRight)
+        self.trunk_layout.addWidget(self.label)
+        self.setLayout(self.trunk_layout)
 
 
 class BranchTemplate(QWidget):
@@ -133,6 +134,7 @@ class BranchTemplate(QWidget):
         self.label = QLabel("This Is a Branch, here you will eventually find links to different Leaves")
         layout.addWidget(self.label)
         self.setLayout(layout)
+
 
 
 
