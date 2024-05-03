@@ -79,14 +79,14 @@ class TheFloor(QWidget):
             items.append(item)
 
         self.treenav_widget.insertTopLevelItems(0, items)
-        self.Floor_layout.addWidget(self.treenav_widget)
+        self.treenav_layout.addWidget(self.treenav_widget)
         self.base_trunk = TrunkTemplate()        
         
         self.treenav_layout.addWidget(self.base_trunk)
         
 
 
-
+        self.Floor_layout.addWidget(self.treenav_layout)
 
 
         layout = QVBoxLayout()
