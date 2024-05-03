@@ -53,6 +53,17 @@ class TheFloor(QWidget):
 
         self.Floor_label = QLabel("The Floor")
         self.Floor_label.setFont(QFont("Montserrat", 20, 1))
+        self.Floor_label.setAlignment(Qt.AlignmentFlag.AlignRight)
+        self.floor_text = QTextEdit()
+        self.floor_text.setAlignment(Qt.AlignmentFlag.AlignRight)
+        
+
+        self.Floor_layout.addWidget(self.floor_text)
+        self.Floor_layout.addWidget(self.Floor_label)
+        self.Floor_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.Floor.setLayout(self.Floor_layout)
+        self.notes_layout.addWidget(self.Floor)
+        
 
         # Nav widget, i actually don't know why this works properly the label part is wrong but whatever im happy
         self.treenav_widget = QTreeWidget()
@@ -69,18 +80,13 @@ class TheFloor(QWidget):
 
         self.treenav_widget.insertTopLevelItems(0, items)
         self.Floor_layout.addWidget(self.treenav_widget)
-        self.base_trunk = TrunkTemplate        
+        self.base_trunk = TrunkTemplate()        
+        
         self.treenav_layout.addWidget(self.base_trunk)
+        
 
 
 
-        # adding Floor to the stacked layout
-        self.Floor_layout.addWidget(self.Floor_label)
-        self.Floor.setLayout(self.Floor_layout)
-        self.notes_layout.addWidget(self.Floor)
-
-        self.Trunk = TrunkTemplate()
-        self.Branch = BranchTemplate()
 
 
         layout = QVBoxLayout()
