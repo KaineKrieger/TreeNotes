@@ -89,7 +89,15 @@ class TheFloor(QWidget):
         self.Floor_layout.addWidget(self.treenav_layout)
 
 
+        self.forward_button = QPushButton()
+        self.forward_button.clicked.connect(self.next_note)
         layout = QVBoxLayout()
+        
+    def next_note(self) -> None:
+        self.notes_layout.setCurrentIndex(
+            self.notes_layout.currentIndex() + 1
+
+        )
         
 
 #        layout.addWidget(Title_label)
