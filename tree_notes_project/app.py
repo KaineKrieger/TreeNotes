@@ -32,6 +32,7 @@ from PyQt6.QtWidgets import (
 
 
 
+
 class TheFloor(QWidget):
     def __init__(self):
         super().__init__()
@@ -53,14 +54,14 @@ class TheFloor(QWidget):
 
         self.Floor_label = QLabel("The Floor")
         self.Floor_label.setFont(QFont("Montserrat", 20, 1))
-        self.Floor_label.setAlignment(Qt.AlignmentFlag.AlignRight)
-        self.floor_text = QTextEdit()
-        self.floor_text.setAlignment(Qt.AlignmentFlag.AlignRight)
-        
 
-        self.Floor_layout.addWidget(self.floor_text)
+        self.floor_text = QTextEdit()
+                
+
+        
         self.Floor_layout.addWidget(self.Floor_label)
-        self.Floor_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.Floor_layout.addWidget(self.floor_text)
+
         self.Floor.setLayout(self.Floor_layout)
         self.notes_layout.addWidget(self.Floor)
         
@@ -79,19 +80,21 @@ class TheFloor(QWidget):
             items.append(item)
 
         self.treenav_widget.insertTopLevelItems(0, items)
+
         self.treenav_layout.addWidget(self.treenav_widget)
-        self.base_trunk = TrunkTemplate()        
+
         
-        self.treenav_layout.addWidget(self.base_trunk)
+
+#       self.treenav_layout.addWidget(self.)
         
 
 
-        self.Floor_layout.addWidget(self.treenav_layout)
+        self.Floor_layout.addLayout(self.treenav_layout)
 
 
         self.forward_button = QPushButton()
         self.forward_button.clicked.connect(self.next_note)
-        layout = QVBoxLayout()
+  
         
     def next_note(self) -> None:
         self.notes_layout.setCurrentIndex(
@@ -132,7 +135,7 @@ class TrunkTemplate(QWidget):
         super().__init__()
         self.trunk_layout = QVBoxLayout()
         self.label = QLabel("This Is a trunk, here you will eventually find links to different branches")
-        self.label.setAlignment(Qt.AlignmentFlag.AlignRight)
+
         self.trunk_layout.addWidget(self.label)
         self.setLayout(self.trunk_layout)
 
