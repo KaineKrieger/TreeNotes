@@ -39,7 +39,7 @@ class TheFloor(QWidget):
         # sizing and spacing
         self.setWindowTitle("TreeNotes")
         self.setContentsMargins(10, 10, 10, 10)
-        self.resize(500, 500)
+        self.resize(1000, 500)
         # the layouts
         self.layout = QVBoxLayout()
         self.notes_layout = QStackedLayout()
@@ -103,6 +103,8 @@ class TheFloor(QWidget):
         )
         
 
+
+
 #        layout.addWidget(Title_label)
 
 
@@ -119,7 +121,7 @@ class TheFloor(QWidget):
         # self.Floor_layout.addWidget(buttonBranch)
 
 
-        self.setLayout(self.Floor_layout)
+
 
 
 
