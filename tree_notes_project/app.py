@@ -41,7 +41,7 @@ class TheFloor(QWidget):
         self.setContentsMargins(10, 10, 10, 10)
         self.resize(1000, 500)
         # the layouts
-        self.layout = QVBoxLayout()
+        self.layout = QVBoxLayout(self)
         self.notes_layout = QStackedLayout()
         self.treenav_layout = QHBoxLayout()
         self.menu_layout = QHBoxLayout()
@@ -53,7 +53,7 @@ class TheFloor(QWidget):
         self.Floor_layout = QVBoxLayout()
 
         self.Floor_label = QLabel("The Floor")
-        self.Floor_label.setFont(QFont("Montserrat", 20, 1))
+        self.Floor_label.setFont(QFont("Montserrat", 20))
 
         self.floor_text = QTextEdit()
                 
@@ -68,7 +68,7 @@ class TheFloor(QWidget):
 
         # Nav widget, i actually don't know why this works properly the label part is wrong but whatever im happy
         self.treenav_widget = QTreeWidget()
-        self.treenav_widget.setColumnCount(len(data))
+        self.treenav_widget.setColumnCount(1)
         self.treenav_widget.setHeaderLabels(["The Floor"])
         items = []
         for key, labels in data.items():
@@ -83,7 +83,7 @@ class TheFloor(QWidget):
 
         self.treenav_layout.addWidget(self.treenav_widget)
 
-        
+
 
 #       self.treenav_layout.addWidget(self.)
         
