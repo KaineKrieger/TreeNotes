@@ -1,4 +1,5 @@
 import sys
+import json
 from controller import data
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont
@@ -16,19 +17,6 @@ from PyQt6.QtWidgets import (
     QTextEdit,
     
 )
-
-
-# class TheFloor(QWidget):
-#    """
-#    This "window" is a QWidget. this is the basic window so i might make this the main window later but for now it is its own window
-#    """
-#
-#    def __init__(self):
-#        super().__init__()
-#        layout = QVBoxLayout()
-#        self.label = QLabel("This Is the Floor, Here you will eventually find the links to different trunks")
-#        layout.addWidget(self.label)
-#        self.setLayout(layout)
 
 
 
@@ -101,24 +89,13 @@ class TheFloor(QWidget):
             self.notes_layout.currentIndex() + 1
 
         )
+
+        # saving the current layout as a .json
+        self.save_button = QPushButton()
+        with open(a, 'C:\Users\horna733\Documents\Python Projects-Adam\Tree-Notes-Project\data.json', data) as f:
         
 
 
-
-#        layout.addWidget(Title_label)
-
-
-#        buttonTrunk = QPushButton("Push to see a Trunk")
-#        buttonTrunk.clicked.connect(
-#            lambda checked: self.toggle_window(self.Trunk)
-#        )
-#        self.Floor_layout.addWidget(buttonTrunk)
-
-        # buttonBranch = QPushButton("Push to see a Branch")
-        # buttonBranch.clicked.connect(
-        #     lambda checked: self.toggle_window(self.Branch)
-        # )
-        # self.Floor_layout.addWidget(buttonBranch)
 
 
 
