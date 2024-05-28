@@ -15,7 +15,9 @@ from PyQt6.QtWidgets import (
     QTreeWidget, 
     QTreeWidgetItem,
     QTextEdit,
-    
+    QDialog,
+    QDialogButtonBox,
+    QLineEdit
 )
 
 
@@ -83,8 +85,8 @@ class TheFloor(QWidget):
 
         # create new turnk/branch buttons
         self.buttons_layout = QHBoxLayout()
-        self.forward_button = QPushButton("New Trunk Note", clicked=self.new_trunk_note)
-        self.buttons_layout.addWidget(self.forward_button)
+        self.new_trunk_button = QPushButton("New Trunk Note", clicked=self.new_trunk_note)
+        self.buttons_layout.addWidget(self.new_trunk_button)
         self.new_branch_button = QPushButton("New Branch Note", clicked=self.new_branch_note)
         self.buttons_layout.addWidget(self.new_branch_button)
         self.layout.addLayout(self.buttons_layout)
@@ -120,7 +122,11 @@ class TheFloor(QWidget):
 
     def new_trunk_note(self):
         # adds a new trunk to to treewidget and gives it a basic name
-        new_note_title = f"New Trunk {self.treenav_widget.topLevelItemCount() + 1}"
+        dlg = CustomDialog()
+        if dlg.exec():
+            new_note_title = dlg.name_input.text()
+        else:
+            new_note_title = f" {self.treenav_widget.topLevelItemCount() + 1}"
         new_note_content = f"Content of {new_note_title}"
         item = QTreeWidgetItem([new_note_title])
         self.treenav_widget.addTopLevelItem(item)
@@ -143,8 +149,26 @@ class TheFloor(QWidget):
             self.notes_label.setText(new_note_title)
             
 
-print("hello world!")
+class CustomDialog(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
 
+        self.setWindowTitle("Naming window")
+
+        QBtn = QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel
+
+        self.buttonBox = QDialogButtonBox(QBtn)
+        self.buttonBox.accepted.connect(self.accept)
+        self.buttonBox.rejected.connect(self.reject)
+
+        self.layout = QVBoxLayout()
+        message = QLabel("what would you like to name your note?")
+        self.name_input = QLineEdit()
+        self.name_input.setPlaceholderText("note name")
+        self.layout.addWidget(message)
+        self.layout.addWidget(self.name_input)
+        self.layout.addWidget(self.buttonBox)
+        self.setLayout(self.layout)
 
 
 # yk what this is i don't have to explain it (it starts the code properly)
