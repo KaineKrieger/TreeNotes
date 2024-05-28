@@ -32,7 +32,7 @@ class TheFloor(QWidget):
         self.layout = QVBoxLayout(self)
         self.setContentsMargins(10, 10, 10, 10)
         self.resize(1000, 500)
-
+       
 
         # Floor label
         self.Floor_label = QLabel("The Floor")
@@ -47,14 +47,14 @@ class TheFloor(QWidget):
         self.treenav_widget = QTreeWidget()
 
 
-        # Only one column for note titles
-        self.treenav_widget.setColumnCount(1)  
-        self.treenav_widget.setHeaderLabels(["Notes"])
+        # Only 2 column for trunk titles and branch titles
+        self.treenav_widget.setColumnCount(2)  
+        self.treenav_widget.setHeaderLabels(["Trunks", "Branches"])
         # using the populate function
         self.populate_tree_widget()
        
         # update to change the note to the selected one
-        self.treenav_widget.itemSelectionChanged.connect(self.update_note_title)
+        self.treenav_widget.itemSelectionChanged.connect(self.update_note)
         self.layout.addWidget(self.treenav_widget)
 
         #       self.treenav_layout.addWidget(self.)
@@ -90,25 +90,32 @@ class TheFloor(QWidget):
         self.layout.addLayout(self.buttons_layout)
 
 
+        
+
 
 # gap for functions because it makes my brain feel better you can shush winika i know you don't like it
 
 
+
     def populate_tree_widget(self):
         # takes the data stored in the other file and populates the treewidget with it
-        for note_title in data:
-            item = QTreeWidgetItem([note_title])
+        for trunk in data:
+            item = QTreeWidgetItem([trunk])
             self.treenav_widget.addTopLevelItem(item)
+            for branch in data[trunk]:
+                item = QTreeWidgetItem([branch])
+                trunk
 
+# selected_items[0].addChild(item)
 
-
-    def update_note_title(self):
-        # updates the title of the note_title
+    def update_note(self):
+        # updates the note part when changed
         selected_items = self.treenav_widget.selectedItems()
         if selected_items:
             selected_note = selected_items[0].text(0)  
             self.notes_label.setText(selected_note)
-
+#            self.text_box.setText(data[selected_note])
+            
 
 
     def new_trunk_note(self):
@@ -134,18 +141,17 @@ class TheFloor(QWidget):
             selected_items[0].addChild(item)
             self.text_box.setPlainText(new_note_content)
             self.notes_label.setText(new_note_title)
+            
 
 
 
 
 
-
-# yk what this is i don't have to explain it
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = TheFloor()
-    window.show()
-    sys.exit(app.exec())
+# yk what this is i don't have to explain it (it starts the code properly)
+app = QApplication(sys.argv)
+window = TheFloor()
+window.show()
+sys.exit(app.exec())
 
 
 
