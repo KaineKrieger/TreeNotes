@@ -143,7 +143,7 @@ class TheFloor(QWidget):
             self.notes_label.setText(new_note_title)
             
 
-
+print("hello world!")
 
 
 
