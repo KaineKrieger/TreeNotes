@@ -68,7 +68,7 @@ class TheFloor(QWidget):
         self.layout.addWidget(self.notes_label)
 
 
-
+        
 
         # Notes box widget
         self.notes_layout = QVBoxLayout()
@@ -173,6 +173,7 @@ class CustomDialog(QDialog):
 
 # yk what this is i don't have to explain it (it starts the code properly)
 app = QApplication(sys.argv)
+
 window = TheFloor()
 window.show()
 sys.exit(app.exec())
