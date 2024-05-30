@@ -145,7 +145,7 @@ class TheFloor(QWidget):
             if dlg.exec():
                 new_note_title = dlg.name_input.text()
             else:
-                new_note_title = f" {self.treenav_widget.topLevelItemCount() + 1}"
+                new_note_title = "por yapping"
             new_note_content = f"content of {new_note_title}"
             item = QTreeWidgetItem([new_note_title])
             selected_items[0].addChild(item)
