@@ -126,7 +126,7 @@ class TheFloor(QWidget):
         if dlg.exec():
             new_note_title = dlg.name_input.text()
         else:
-            new_note_title = f" {self.treenav_widget.topLevelItemCount() + 1}"
+            new_note_title = "4 yapping"
         new_note_content = f"Content of {new_note_title}"
         item = QTreeWidgetItem([new_note_title])
         self.treenav_widget.addTopLevelItem(item)
@@ -141,12 +141,17 @@ class TheFloor(QWidget):
         selected_items = self.treenav_widget.selectedItems()
         if selected_items:
             selected_note = selected_items[0].text(0)
-            new_note_title = f"New Branch of '{selected_note}'"
+            dlg = CustomDialog()
+            if dlg.exec():
+                new_note_title = dlg.name_input.text()
+            else:
+                new_note_title = f" {self.treenav_widget.topLevelItemCount() + 1}"
             new_note_content = f"content of {new_note_title}"
             item = QTreeWidgetItem([new_note_title])
             selected_items[0].addChild(item)
             self.text_box.setPlainText(new_note_content)
             self.notes_label.setText(new_note_title)
+
             
 
 class CustomDialog(QDialog):
